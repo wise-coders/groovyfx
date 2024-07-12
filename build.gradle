@@ -1,7 +1,9 @@
+import org.javamodularity.moduleplugin.tasks.ModularJavaExec
+
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2011-2021 the original author or authors.
+ * Copyright 2011-2024 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +25,7 @@ plugins {
     id 'org.kordamp.gradle.coveralls'
     id 'org.openjfx.javafxplugin'
     id 'org.asciidoctor.jvm.convert'
-    id 'org.jonnyzzz.java9c'
+    //id 'org.jonnyzzz.java9c'
     id 'org.javamodularity.moduleplugin'
     id 'com.google.osdetector'
 }
@@ -100,21 +102,21 @@ config {
                 link 'http://junit.org/javadoc/latest/', 'org.junit.', 'junit.'
                 link 'http://docs.oracle.com/javase/8/docs/api/', 'java.', 'org.xml.', 'javax.', 'org.w3c.'
                 link 'http://docs.oracle.com/javase/8/javafx/api/', 'javafx.'
-                link 'http://docs.groovy-lang.org/latest/html/api/', 'groovy.', 'org.codehaus.groovy'
+                link 'http://docs.groovy-lang.org/latest/html/api/', 'groovy.', 'org.apache.groovy'
             }
         }
     }
 
     coverage {
         jacoco {
-            toolVersion = '0.8.6'
+            toolVersion = '0.8.12'
         }
     }
 }
 
 repositories {
     if (project.hasProperty('groovyfx_useMavenLocal') && Boolean.valueOf(project.groovyfx_useMavenLocal)) { mavenLocal() }
-    jcenter()
+    mavenCentral()
 }
 
 configurations {
@@ -134,14 +136,15 @@ javafx {
 }
 
 dependencies {
-    compile "org.codehaus.groovy:groovy-all:${groovyfx_groovyVersion}"
+    compile "org.apache.groovy:groovy-all:${groovyfx_groovyVersion}"
     testCompile "junit:junit:${groovyfx_junitVersion}"
     jansi "org.fusesource.jansi:jansi:${groovyfx_jansiVersion}"
     testCompile("org.spockframework:spock-core:${groovyfx_spockVersion}") {
-        exclude group: 'org.codehaus.groovy', module: 'groovy-all'
+        exclude group: 'org.apache.groovy', module: 'groovy-all'
     }
 }
 
+// DO 'gradlew licenseFormat' TO FIX LICENSE ISSUES
 license {
      mapping {
         java   = 'SLASHSTAR_STYLE'
@@ -205,7 +208,7 @@ processResources {
 
 sourceSets {
     demo {
-        compileClasspath += sourceSets.main.output + configurations.compile
+        compileClasspath += sourceSets.main.output + configurations.runtimeClasspath
         runtimeClasspath += sourceSets.main.output
         groovy {
             srcDir 'src/demo/groovy'
@@ -220,7 +223,7 @@ sourceSets {
 
 new File('src/demo/groovy/demo').eachFileMatch(~/.*Demo.groovy/) { file ->
     def demoClassName = file.name - '.groovy'
-    task "run$demoClassName"(type: org.javamodularity.moduleplugin.tasks.ModularJavaExec) {
+    task "run$demoClassName"(type: ModularJavaExec) {
         group = "Demo"
         description = "Run the $demoClassName program"
         main = "groovyfx.demo/demo.$demoClassName"

@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2011-2021 the original author or authors.
+ * Copyright 2011-2024 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ package groovyx.javafx
 import javafx.stage.Stage
 import java.util.concurrent.CountDownLatch
 
-public class GroovyFXTest extends GroovyTestCase {
+public class GroovyFXTest extends groovy.test.GroovyAssert {
 
     void testStartSetsDelegate() {
         Stage startParameter
