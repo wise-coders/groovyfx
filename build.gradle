@@ -1,4 +1,4 @@
-import org.javamodularity.moduleplugin.tasks.ModularJavaExec
+//import org.javamodularity.moduleplugin.tasks.ModularJavaExec
 
 /*
  * SPDX-License-Identifier: Apache-2.0
@@ -26,7 +26,7 @@ plugins {
     id 'org.openjfx.javafxplugin'
     id 'org.asciidoctor.jvm.convert'
     //id 'org.jonnyzzz.java9c'
-    id 'org.javamodularity.moduleplugin'
+    //id 'org.javamodularity.moduleplugin'
     id 'com.google.osdetector'
 }
 
@@ -209,7 +209,7 @@ processResources {
 
 sourceSets {
     demo {
-        runtimeClasspath += sourceSets.main.output + configurations.runtimeClasspath
+        compileClasspath += sourceSets.main.output + configurations.runtimeClasspath
         runtimeClasspath += sourceSets.main.output
         groovy {
             srcDir 'src/demo/groovy'
@@ -224,7 +224,7 @@ sourceSets {
 
 new File('src/demo/groovy/demo').eachFileMatch(~/.*Demo.groovy/) { file ->
     def demoClassName = file.name - '.groovy'
-    task "run$demoClassName"(type: ModularJavaExec) {
+    task "run$demoClassName"(type: JavaExec) {
         group = "Demo"
         description = "Run the $demoClassName program"
         main = "groovyfx.demo/demo.$demoClassName"
