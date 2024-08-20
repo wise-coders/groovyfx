@@ -19,7 +19,7 @@ import static groovyx.javafx.GroovyFX.start
 
 start {
     stage(title: "GroovyFX TitledPane Demo", width: 400, height: 400, visible: true, style: "decorated") {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             vbox(spacing: 10) {
                 titledPane(id: "t1") {
                     title {

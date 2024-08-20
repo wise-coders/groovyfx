@@ -80,7 +80,7 @@ start {
             hourDots << circle(fill: BLACK, layoutX: x, layoutY: y, radius: r)
         }
 
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             group(layoutX: centerX, layoutY: centerY) {
                 // outer rim
                 circle(radius: radius + 20) {

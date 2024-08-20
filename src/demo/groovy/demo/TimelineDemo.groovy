@@ -22,7 +22,7 @@ y = 5.0
 
 start {
     stage(x: 100, y: 100, onShown: { println "Stage 1"}, visible: true) {
-        scene(width: 500, height: 500, fill: GROOVYBLUE) {
+        scene(width: 500, height: 500, fill: ALICEBLUE) {
             r = rectangle(x: bind(this, "x"), y: bind(this, "y"), width: 50, height: 25) {
                 fill RED
             }

@@ -55,7 +55,7 @@ start {
     }
 
     stage(title: "GroovyFX Menu Demo", width: 650, height: 450, visible: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             borderPane {
                 top {
                     menuBar {

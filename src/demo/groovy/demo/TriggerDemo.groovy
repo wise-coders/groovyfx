@@ -21,7 +21,7 @@ import static groovyx.javafx.GroovyFX.start
 
 start {
     stage(title: "GroovyFX Trigger Demo", width: 600, height: 450, visible: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             rect = rectangle(x: 25, y: 40, width: 200, height: 150, fill: RED)
         }
     }

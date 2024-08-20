@@ -19,7 +19,7 @@ import static groovyx.javafx.GroovyFX.start
 
 start {
     stage(title: "GroovyFX Parllel Transition Demo", width: 400, height: 300, visible: true, resizable: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             rectangle(x: 20, y: 20, width: 100, height: 50, fill: BLUE) {
                 rectTransition = parallelTransition(onFinished: { println "parallel done" }) {
                     translateTransition(5.s, tween: EASE_OUT, to: 100, onFinished: { println "translate done" })

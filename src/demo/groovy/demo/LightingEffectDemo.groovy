@@ -19,7 +19,7 @@ import static groovyx.javafx.GroovyFX.start
 
 start {
     stage(title: "Lighting Effect Demo", width: 520, height: 300, visible: true, style: "decorated") {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             text(x: 10, y: 10, text: "Light Effect", font: "bold 48pt Amble", fill: YELLOW, textOrigin: TOP) {
                 lighting(surfaceScale: 5.0) {
 //                    distant(azimuth: -135)

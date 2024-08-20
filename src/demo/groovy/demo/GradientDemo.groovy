@@ -26,7 +26,7 @@ import static groovyx.javafx.GroovyFX.start
 start {
     stage(title: "GroovyFX Gradient Demo", width: 1020, height: 450, visible: true) {
         scene {
-            fill GROOVYBLUE
+            fill ALICEBLUE
 
             def width = 240
             def height = 180

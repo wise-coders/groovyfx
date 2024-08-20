@@ -23,7 +23,7 @@ import static groovyx.javafx.GroovyFX.start
  */
 start {
     stage(title: "Circle (bind)  Demo", x: 100, y: 100, visible: true, style: "decorated", primary: true) {
-        scene(id: "sc", fill: GROOVYBLUE, width: 400, height: 400) {
+        scene(id: "sc", fill: ALICEBLUE, width: 400, height: 400) {
             circle( radius: bind(sc.width()/4.0), 
                     centerX: bind(sc.width()/2.0), 
                     centerY: bind(sc.height()/2.0)

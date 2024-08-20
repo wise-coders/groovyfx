@@ -29,7 +29,7 @@ start {
     }
 
     stage(title: "GroovyFX Transform3D Demo", width: 400, height: 300, visible: true, resizable: true) {
-        scene(fill: GROOVYBLUE, camera: new PerspectiveCamera()) {
+        scene(fill: ALICEBLUE, camera: new PerspectiveCamera()) {
             rectangle(x: 20, y: 20, width: 100, height: 50, fill: BLUE) {
                 //rotate(angle: 30, axis: Rotate.Y_AXIS)
                 //scale(x: 1.2)

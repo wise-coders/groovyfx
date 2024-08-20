@@ -54,7 +54,7 @@ def dateFormat = DateTimeFormatter.ofPattern("MMM dd, yyyy")
 
 start {
     stage(title: "GroovyFX Table Demo", width: 500, height: 200, visible: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             gridPane(hgap: 5, vgap: 10, padding: 25, alignment: "top_center") {
                 button(row: 1, column: 0, text: 'Add Person', onAction: {
                     people << createPerson()

@@ -23,7 +23,7 @@ start {
     Transition rectFade = null
 
     stage(title: "GroovyFX Fade Transition Demo", width: 400, height: 300, visible: true, resizable: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             rectangle(x: 20, y: 20, width: 100, height: 50, fill: BLUE) {
                 rectFade = fadeTransition(4.s, delay: 1.s, from: 1.0, to: 0.0, onFinished: { println "done"})
             }

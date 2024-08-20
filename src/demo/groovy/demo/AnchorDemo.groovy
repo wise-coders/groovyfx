@@ -19,7 +19,7 @@ import static groovyx.javafx.GroovyFX.start
 
 start {
     stage(title: "GroovyFX AnchorPane Demo", width: 650, height: 450, visible: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             anchorPane {
                 button("ONE", anchor: [10, 110, 10, 10])
                 button("TWO", rightAnchor: 10, topAnchor: 10)

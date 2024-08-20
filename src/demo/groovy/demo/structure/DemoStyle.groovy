@@ -32,10 +32,10 @@ class DemoStyle {
         Stage frame = sgb.primaryStage
         Scene scene = frame.scene
         scene.stylesheets << 'demo/demo.css'
-//        def GROOVYBLUE = sgb.groovyblue
+//        def ALICEBLUE = sgb.ALICEBLUE
 //        scene.fill = sgb.radialGradient(stops: [
-//            GROOVYBLUE.brighter(),
-//            GROOVYBLUE.darker()]
+//            ALICEBLUE.brighter(),
+//            ALICEBLUE.darker()]
 //        ).build() // a scene fill cannot be set via css atm
 
         GridPane grid = scene.root

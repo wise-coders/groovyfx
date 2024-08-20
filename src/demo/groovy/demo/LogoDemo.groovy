@@ -27,7 +27,7 @@ import static groovyx.javafx.GroovyFX.start
 start {
 
     stage title: "GroovyFX Logo", x: 10, y: 10, visible: true, {
-        scene(fill: GROOVYBLUE, width: 300, height: 300) {
+        scene(fill: ALICEBLUE, width: 300, height: 300) {
             stackPane {
                 rectangle x: 0, y: 0, width: 120, height: 120, opacity: 0d
                 borderPane id: 'parent', {
@@ -53,7 +53,7 @@ start {
 
 def star(SceneGraphBuilder builder, int angle, List stops) {
     builder.with {
-        path(stroke: GROOVYBLUE, strokeWidth: 0.5, rotate: angle, opacity: 0.9) {
+        path(stroke: ALICEBLUE, strokeWidth: 0.5, rotate: angle, opacity: 0.9) {
             fill linearGradient(start: [0, 0], end: [1, 1], stops: stops)
             moveTo x: 50, y: 00
             lineTo x: 61, y: 36
@@ -74,7 +74,7 @@ def star(SceneGraphBuilder builder, int angle, List stops) {
 def fxLabel(SceneGraphBuilder builder) {
     builder.group(scaleX: 0.25, scaleY: 0.25, translateX: 6, translateY: 4) {
         path strokeWidth: 0d, {
-            metal = fill radialGradient(stops: [GROOVYBLUE.brighter(), GROOVYBLUE.darker()])
+            metal = fill radialGradient(stops: [ALICEBLUE.brighter(), ALICEBLUE.darker()])
             moveTo x: 64, y: 0
             lineTo x: 62, y: 17
             cubicCurveTo controlX1: 62, controlY1: 17, controlX2: 28, controlY2: 17, x: 28, y: 17

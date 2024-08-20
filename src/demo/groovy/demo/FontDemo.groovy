@@ -21,7 +21,7 @@ import static groovyx.javafx.GroovyFX.start
 
 start {
     stage(show: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             vbox {
                 text('Text with font "80pt"', font: '80pt')
                 hbox(spacing: 20) {

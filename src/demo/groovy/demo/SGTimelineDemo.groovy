@@ -24,7 +24,7 @@ start {
     def r = 90;
 
     stage(title: "GroovyFX Timeline Demo", width: 200, height: 200, visible: true, resizable: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             map = circle(radius: 25) {
                 fill(RED)
             }

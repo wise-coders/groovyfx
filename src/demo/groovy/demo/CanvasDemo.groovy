@@ -30,7 +30,7 @@ start {
     f = yellow
     s = navy
     stage(title: "Canvas Demo", x: 100, y: 100, visible: true, style: "decorated", primary: true) {
-        scene(id: "sc", fill: GROOVYBLUE, width: 400, height: 400) {
+        scene(id: "sc", fill: ALICEBLUE, width: 400, height: 400) {
             canvas( id:"canvas", width: bind(sc.width()), height: bind(sc.height()) ) {
                 fill(p: bind(this, "f"))
                 fillRect (x:0,y:0, w:bind(canvas.width()), h:bind(canvas.height()))

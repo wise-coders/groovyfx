@@ -41,7 +41,7 @@ DisplacementMap displacementMap(int w, int h) {
 // argument (it) is the primaryStage
 start {
     stage(title: "GroovyFX Effects Demo", visible: true) {
-        scene(root: group(), width: 840, height: 680, fill: GROOVYBLUE) {
+        scene(root: group(), width: 840, height: 680, fill: ALICEBLUE) {
             /// Perspective
             group(cache: true, layoutX: 0, layoutY: 0) {
                 rectangle(x: 10, y: 10, width: 280, height: 80, fill: BLUE)

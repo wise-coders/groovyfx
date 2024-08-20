@@ -25,7 +25,7 @@ import static groovyx.javafx.GroovyFX.start
 
 start {
     stage(title: "GroovyFX FXML Demo", visible: true) {
-        scene(fill: GROOVYBLUE, width: 640, height: 500) {
+        scene(fill: ALICEBLUE, width: 640, height: 500) {
             fxml(new File( getClass().getResource('/demo/buildertry.fxml').toURI() ).text)
         }
     }

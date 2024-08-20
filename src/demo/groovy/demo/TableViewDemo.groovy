@@ -45,7 +45,7 @@ def dateFormat = DateTimeFormatter.ofPattern("MMM dd, yyyy")
 
 start {
     stage(title: "GroovyFX Table Demo", width: 500, height: 200, visible: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             tableView(selectionMode: "single", cellSelectionEnabled: true, editable: true, items: persons) {
                 tableColumn(editable: true, property: "name", text: "Name", prefWidth: 150,
                         onEditCommit: { event ->

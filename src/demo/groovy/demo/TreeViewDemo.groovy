@@ -27,7 +27,7 @@ start {
     }
 
     stage(title: "GroovyFX TreeView Demo", x: 100, y: 100, visible: true, style: "decorated") {
-        scene(width: 400, height: 400, fill: GROOVYBLUE) {
+        scene(width: 400, height: 400, fill: ALICEBLUE) {
             treeView(showRoot: false) {
                 //onEditCancel()
                 //onEditStart()

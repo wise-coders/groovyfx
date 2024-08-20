@@ -22,7 +22,7 @@ import static groovyx.javafx.GroovyFX.start
  */
 start { primaryStage ->
     stage(title: "GroovyFX Choice Box Demo", width: 400, height: 200, visible: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             vbox(padding: 10, spacing: 5) {
                 choiceBox(value: 'blue', items: ['blue', 'green', 'red']) {
                     onSelect { control, item ->

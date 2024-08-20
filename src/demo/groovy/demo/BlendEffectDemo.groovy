@@ -24,7 +24,7 @@ import static groovyx.javafx.GroovyFX.start
 
 start {
     stage(title: "GroovyFX Blend Effect Demo", width: 420, height: 420, visible: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             rectangle(width: 400, height: 400) {
                 onMousePressed {e -> println "mouse press @$e.x, $e.y"}
                 effect blend(mode: "multiply") {

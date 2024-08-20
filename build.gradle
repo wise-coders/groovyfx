@@ -95,9 +95,9 @@ config {
         githubRepo = 'groovyfx-project/groovyfx'
     }
 
+
     docs {
         groovydoc {
-            replaceJavadoc = true
             options {
                 link 'http://junit.org/javadoc/latest/', 'org.junit.', 'junit.'
                 link 'http://docs.oracle.com/javase/8/docs/api/', 'java.', 'org.xml.', 'javax.', 'org.w3c.'
@@ -122,6 +122,7 @@ repositories {
 
 configurations {
     jansi.extendsFrom(runtime)
+    demo.extendsFrom(ast)
 }
 
 javafx {
@@ -198,6 +199,7 @@ asciidoctor {
 }
 
 processResources {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from(sourceSets.main.resources.srcDirs) {
         filter(org.apache.tools.ant.filters.ReplaceTokens, tokens: [
             'groovyfx.version': project.version
@@ -208,15 +210,31 @@ processResources {
 // ------------- compiling demo source ---------------
 
 sourceSets {
+    ast {
+        compileClasspath += configurations.runtimeClasspath
+        /*groovy {
+            srcDirs 'src/ast/groovy'
+        }
+        resources {
+            srcDir 'src/ast/resources'
+        }*/
+    }
+    main {
+        compileClasspath += sourceSets.ast.output + configurations.runtimeClasspath
+        runtimeClasspath += sourceSets.ast.output + configurations.runtimeClasspath
+        /*groovy {
+            srcDirs 'src/main/groovy'
+        }*/
+    }
     demo {
-        compileClasspath += sourceSets.main.output + configurations.runtimeClasspath
-        runtimeClasspath += sourceSets.main.output
-        groovy {
-            srcDir 'src/demo/groovy'
+        compileClasspath += sourceSets.main.output + sourceSets.ast.output + configurations.runtimeClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.ast.output + configurations.runtimeClasspath
+        /*groovy {
+            srcDirs 'src/demo/groovy'
         }
         resources {
             srcDir 'src/demo/resources'
-        }
+        }*/
     }
 }
 

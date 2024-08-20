@@ -24,24 +24,24 @@ import static groovyx.javafx.GroovyFX.start
 
 start {
     stage title: "Chained Effects Demo", width: 450, height: 300, visible: true, {
-        scene fill: GROOVYBLUE, {
+        scene fill: ALICEBLUE, {
             //simple
             rectangle x: 10, y: 10, width: 100, height: 100, fill: WHITESMOKE, {
-                effect dropShadow(color: YELLOW, input: innerShadow(color: GROOVYBLUE))
+                effect dropShadow(color: YELLOW, input: innerShadow(color: ALICEBLUE))
             }
             // changing the sequence leads to different results
             rectangle x: 120, y: 10, width: 100, height: 100, fill: WHITESMOKE, {
-                effect innerShadow(color: GROOVYBLUE, input: dropShadow(color: YELLOW))
+                effect innerShadow(color: ALICEBLUE, input: dropShadow(color: YELLOW))
             }
             // chaining by using groups
             group {
                 rectangle x: 230, y: 10, width: 100, height: 100, fill: WHITESMOKE, {
-                    effect innerShadow(color: GROOVYBLUE)
+                    effect innerShadow(color: ALICEBLUE)
                 }
                 effect dropShadow(color: YELLOW)
             }
             // changing the effects at runtime
-            def inner = innerShadow(color: GROOVYBLUE)
+            def inner = innerShadow(color: ALICEBLUE)
             def outer = dropShadow(color: YELLOW)
             rectangle id: 'interactive', x: 340, y: 10, width: 100, height: 100, fill: WHITESMOKE, {
                 effect outer

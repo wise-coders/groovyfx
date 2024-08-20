@@ -19,7 +19,7 @@ import static groovyx.javafx.GroovyFX.start
 
 start {
     stage(title: "GroovyFX Scale Transition Demo", width: 400, height: 300, visible: true, resizable: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             rectangle(x: 20, y: 20, width: 100, height: 50, fill: BLUE) {
                 scaleTransition(2.s, delay: 500.ms, interpolator: LINEAR, to: 0.5).playFromStart()
             }

@@ -19,7 +19,7 @@ import static groovyx.javafx.GroovyFX.start
 
 start {
     stage(title: 'GroovyFX Fill Transition Demo', width: 400, height: 300, visible: true, resizable: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             rectangle(x: 20, y: 20, width: 100, height: 50, fill: BLUE) {
                 fillTransition(4.s, delay: 1000.ms, interpolator: EASE_IN, to: RED,
                         onFinished: { println 'done'}).playFromStart()

@@ -32,7 +32,7 @@ def xml = """
 
 start {
     stage(title: "GroovyFX FXML Demo", visible: true) {
-        scene(fill: GROOVYBLUE, width: 640, height: 800) {
+        scene(fill: ALICEBLUE, width: 640, height: 800) {
             vbox(padding: 10) {
                 stackPane {
                     fxml """

@@ -19,7 +19,7 @@ import static groovyx.javafx.GroovyFX.start
 
 start {
     stage(title: "GroovyFX ToolBar Demo", width: 820, height: 400, visible: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             borderPane {
                 top {
                     toolBar(orientation: HORIZONTAL) {

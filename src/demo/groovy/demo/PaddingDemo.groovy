@@ -19,7 +19,7 @@ import static groovyx.javafx.GroovyFX.start
 
 start {
     stage(title: "GroovyFX Padding Demo", width: 800, height: 800, visible: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             vbox(spacing: 30, fillWidth: false, alignment: "center") {
                 stackPane(style: "-fx-background-color: burlywood", padding: 20) {
                     text("Padding: 20", fill: SIENNA, font: "48pt")

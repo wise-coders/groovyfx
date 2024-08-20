@@ -20,7 +20,7 @@ import static groovyx.javafx.GroovyFX.start
 start {
     stage(title: "GroovyFX Fill & Stroke Demo", width: 600, height: 700, visible: true) {
         scene {
-            fill GROOVYBLUE
+            fill ALICEBLUE
 
             def width = 240
             def height = 180

@@ -38,7 +38,7 @@ start {
 
     stage(title: "GroovyFX Bind Demo", x: 100, y: 100, width: 400, height: 400, visible: true,
             style: "decorated", onHidden: { println "Close"}) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             vbox(spacing: 10, padding: 10) {
                 TextField tf = textField(text: 'Change Me!')
                 //button(text: bind(source: tf, sourceProperty: 'text'), onAction: {qt.onClick()})

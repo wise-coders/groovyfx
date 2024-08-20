@@ -29,7 +29,7 @@ start {
     }
 
     stage(title: "GroovyFX Path Transition Demo", width: 400, height: 300, visible: true, resizable: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             final thePath = path(translateX: 50, translateY: 50, fill: TRANSPARENT, stroke: GREEN, strokeWidth: 5) {
                 moveTo(x: 0, y: 0)
                 lineTo(x: 100, y: 0)

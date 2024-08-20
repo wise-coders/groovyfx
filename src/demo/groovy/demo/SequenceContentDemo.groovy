@@ -22,7 +22,7 @@ start {
         def r1 = rectangle(width: 100, height: 100, fill: RED)
         def r2 = rectangle(x: 110, width: 100, height: 100, fill: BLUE)
 
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             group(children: [r1, r2], layoutX: 20, layoutY: 20)
         }
     }

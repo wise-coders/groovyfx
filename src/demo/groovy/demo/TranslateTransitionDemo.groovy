@@ -20,7 +20,7 @@ import static javafx.animation.Interpolator.EASE_OUT
 
 start {
     stage(title: "GroovyFX TranslateTransition Demo", visible: true, resizable: true) {
-        scene(fill: GROOVYBLUE, width: 400, height: 300) {
+        scene(fill: ALICEBLUE, width: 400, height: 300) {
             rectangle(x: 20, y: 20, width: 100, height: 50, fill: GREEN) {
                 translateTransition(5.s, delay: 500.ms, interpolator: EASE_OUT, to: 100).playFromStart()
             }

@@ -39,7 +39,7 @@ start { app ->
     stage title: "All-in-one app demo", visible: true, {
         scene {
             gridPane hgap: 5, vgap: 10, padding: 25, alignment: TOP_CENTER,
-                    style: "-fx-background-color: GROOVYBLUE", {
+                    style: "-fx-background-color: ALICEBLUE", {
                         columnConstraints minWidth: 50, halignment: "right"
                         columnConstraints prefWidth: 250, hgrow: 'always'
 

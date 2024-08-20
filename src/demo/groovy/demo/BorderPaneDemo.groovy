@@ -19,7 +19,7 @@ import static groovyx.javafx.GroovyFX.start
 
 start {
     stage(title: "GroovyFX @ JavaOne", show: true) {
-        scene(fill: GROOVYBLUE, width: 650, height: 450) {
+        scene(fill: ALICEBLUE, width: 650, height: 450) {
             borderPane {
                 top(align: CENTER, margin: [10, 0, 10, 0]) {
                     button("Top Button")

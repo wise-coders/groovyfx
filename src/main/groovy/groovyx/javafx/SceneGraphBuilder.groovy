@@ -785,9 +785,9 @@ class SceneGraphBuilder extends FactoryBuilderSupport {
         //addAttributeDelegate(BindFactory.bindingAttributeDelegate)
         addAttributeDelegate(idDelegate)
 
-        Color.NamedColors.namedColors.put("groovyblue", Color.rgb(99, 152, 170))
+        //Color.NamedColors.NAMED_COLORS.put("groovyblue", Color.rgb(99, 152, 170))
 
-        Color.NamedColors.namedColors.each { name, color ->
+        Color.NamedColors.NAMED_COLORS.each { name, color ->
             setVariable(name, color) // would love to remove this one
             setVariable(name.toUpperCase(), color)
         }

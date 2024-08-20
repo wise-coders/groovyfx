@@ -19,7 +19,7 @@ import static groovyx.javafx.GroovyFX.start
 
 start {
     stage(title: "GroovyfX, SplitPane Demo", x: 100, y: 100, width: 800, height: 400, visible: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             splitPane(orientation: HORIZONTAL, prefHeight: 200) {
                 dividerPosition(index: 0, position: 0.25)
                 dividerPosition(index: 1, position: 0.50)

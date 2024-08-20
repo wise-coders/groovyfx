@@ -19,7 +19,7 @@ import static groovyx.javafx.GroovyFX.start
 
 start {
     stage(title: "GridPane Demo", width: 400, height: 500, visible: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             gridPane(hgap: 5, vgap: 10, padding: 25, alignment: "top_center") {
                 columnConstraints(minWidth: 50, halignment: "right")
                 columnConstraints(prefWidth: 250, hgrow: 'always')

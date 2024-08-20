@@ -19,7 +19,7 @@ import static groovyx.javafx.GroovyFX.start
 
 start {
     stage(title: "TabPane Example", width: 400, height: 400, visible: true) {
-        scene(fill: GROOVYBLUE) {
+        scene(fill: ALICEBLUE) {
             tabPane {
                 tab('Tab 1') {
                     label("This is Label 1\n\nAnd there were a few empty lines just there!")
