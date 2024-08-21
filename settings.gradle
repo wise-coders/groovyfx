@@ -17,17 +17,11 @@
  */
 pluginManagement {
     repositories {
-        jcenter()
         gradlePluginPortal()
     }
     plugins {
-        id 'org.kordamp.gradle.groovy-project' version kordampPluginVersion
-        id 'org.kordamp.gradle.bintray'        version kordampPluginVersion
-        id 'org.kordamp.gradle.coveralls'      version kordampPluginVersion
         id 'org.openjfx.javafxplugin'          version '0.1.0'
         id 'org.asciidoctor.jvm.convert'       version '3.3.2'
-        //id 'org.jonnyzzz.java9c'               version '0.2.3'
-        //id 'org.javamodularity.moduleplugin'   version '1.8.15'
         id 'com.google.osdetector'             version '1.6.2'
     }
 }

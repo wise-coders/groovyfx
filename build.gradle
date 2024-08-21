@@ -20,13 +20,8 @@
 plugins {
     id 'groovy'
     id 'idea'
-    id 'org.kordamp.gradle.groovy-project'
-    //id 'org.kordamp.gradle.bintray'
-    //id 'org.kordamp.gradle.coveralls'
     id 'org.openjfx.javafxplugin'
     id 'org.asciidoctor.jvm.convert'
-    //id 'org.jonnyzzz.java9c'
-    //id 'org.javamodularity.moduleplugin'
     id 'com.google.osdetector'
 }
 
@@ -35,85 +30,6 @@ if (!project.hasProperty('bintrayApiKey'))    project.ext.bintrayApiKey    = ''
 if (!project.hasProperty('sonatypeUsername')) project.ext.sonatypeUsername = ''
 if (!project.hasProperty('sonatypePassword')) project.ext.sonatypePassword = ''
 
-config {
-    release = (rootProject.findProperty('release') ?: false).toBoolean()
-
-    info {
-        name          = 'Groovyfx'
-        vendor        = 'Groovyfx'
-        description   = 'A library for writing JavaFX applications in the Groovy language'
-        inceptionYear = '2011'
-        tags          = ['Groovy', 'JavaFX', 'GroovyFX']
-
-        links {
-            website      = 'http://groovyfx.org'
-            issueTracker = 'https://github.com/groovyfx-project/groovyfx/issues'
-            scm          = 'https://github.com/groovyfx-project/groovyfx.git'
-        }
-
-        people {
-            [
-                JimClarke5 : 'Jim Clarke',
-                deanriverson : 'Dean Iverson',
-                russel : 'Russel Winder',
-                aalmiray : 'Andres Almiray',
-                Dierk : 'Dierk König'
-            ].each { devId, devName ->
-                person {
-                    id   = devId
-                    name = devName
-                    roles = ['developer']
-                }
-            }
-        }
-
-        implementation { enabled = false }
-
-        credentials {
-            sonatype {
-                username = project.sonatypeUsername
-                password = project.sonatypePassword
-            }
-        }
-    }
-
-    licensing {
-        licenses {
-            license {
-                id = 'Apache-2.0'
-            }
-        }
-    }
-
-    bintray {
-        credentials {
-            username = project.bintrayUsername
-            password = project.bintrayApiKey
-        }
-        userOrg = 'groovyfx'
-        name    = 'groovyfx'
-        githubRepo = 'groovyfx-project/groovyfx'
-    }
-
-
-    docs {
-        groovydoc {
-            options {
-                link 'http://junit.org/javadoc/latest/', 'org.junit.', 'junit.'
-                link 'http://docs.oracle.com/javase/8/docs/api/', 'java.', 'org.xml.', 'javax.', 'org.w3c.'
-                link 'http://docs.oracle.com/javase/8/javafx/api/', 'javafx.'
-                link 'http://docs.groovy-lang.org/latest/html/api/', 'groovy.', 'org.apache.groovy'
-            }
-        }
-    }
-
-    /*
-    coverage {
-        jacoco {
-            toolVersion = '0.8.12'
-        }
-    }*/
-}
 
 repositories {
     if (project.hasProperty('groovyfx_useMavenLocal') && Boolean.valueOf(project.groovyfx_useMavenLocal)) { mavenLocal() }
@@ -146,18 +62,6 @@ dependencies {
     }
 }
 
-// DO 'gradlew licenseFormat' TO FIX LICENSE ISSUES
-license {
-     mapping {
-        java   = 'SLASHSTAR_STYLE'
-        groovy = 'SLASHSTAR_STYLE'
-        gdsl   = 'SLASHSTAR_STYLE'
-        dsld   = 'SLASHSTAR_STYLE'
-        fxml   = 'XML_STYLE'
-    }
-    exclude '**/*.png'
-    exclude '**/*.jpg'
-}
 
 idea {
     module {
@@ -212,30 +116,20 @@ processResources {
 sourceSets {
     ast {
         compileClasspath += configurations.runtimeClasspath
-        /*groovy {
-            srcDirs 'src/ast/groovy'
-        }
-        resources {
-            srcDir 'src/ast/resources'
-        }*/
     }
     main {
         compileClasspath += sourceSets.ast.output + configurations.runtimeClasspath
         runtimeClasspath += sourceSets.ast.output + configurations.runtimeClasspath
-        /*groovy {
-            srcDirs 'src/main/groovy'
-        }*/
     }
     demo {
         compileClasspath += sourceSets.main.output + sourceSets.ast.output + configurations.runtimeClasspath
         runtimeClasspath += sourceSets.main.output + sourceSets.ast.output + configurations.runtimeClasspath
-        /*groovy {
-            srcDirs 'src/demo/groovy'
-        }
-        resources {
-            srcDir 'src/demo/resources'
-        }*/
     }
+}
+
+task createJar(type: Jar) {
+    archiveBaseName.set('groovyfx')
+    from sourceSets.main.output
 }
 
 // ---------------- dynamic tasks to run demos ------------------

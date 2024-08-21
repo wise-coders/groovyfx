@@ -84,13 +84,9 @@ start {
             group(layoutX: centerX, layoutY: centerY) {
                 // outer rim
                 circle(radius: radius + 20) {
-                    fill(radialGradient(radius: 1.0, center: [0.0, 0.0], focusDistance: 0.5, focusAngle: 0,
-                            stops: [[0.9, SILVER], [1.0, BLACK]]))
                 }
                 // clock face
                 circle(radius: radius + 10, stroke: BLACK) {
-                    fill(radialGradient(radius: 1.0, center: [0.0, 0.0], focusDistance: 4.0, focusAngle: 90,
-                            stops: [[0.0, WHITE], [1.0, CADETBLUE]]))
                 }
                 // dots around the clock for the hours
                 nodes(hourDots)
