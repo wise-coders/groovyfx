@@ -54,4 +54,15 @@ public class GroovyFX extends Application {
          closure = buildMe;
          Application.launch();
      }
+
+     public static void startStage( Closure buildMe ){
+         try {
+             Stage primaryStage = new Stage();
+             buildMe.setDelegate(new SceneGraphBuilder(primaryStage));
+             InvokerHelper.invokeClosure(buildMe, new Object[] { primaryStage });
+         } catch(RuntimeException re) {
+             re.printStackTrace();
+             throw re;
+         }
+     }
 }
