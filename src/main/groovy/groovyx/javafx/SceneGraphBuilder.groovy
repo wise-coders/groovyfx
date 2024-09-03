@@ -121,6 +121,7 @@ import javafx.stage.Stage
 import javafx.stage.Window
 import org.codehaus.groovy.runtime.MethodClosure
 
+import java.lang.reflect.Field
 import java.util.logging.Logger
 
 /**
@@ -172,11 +173,11 @@ class SceneGraphBuilder extends FactoryBuilderSupport {
         Platform.runLater(c);
         return this;
     }
-    
+
     boolean isFxApplicationThread() {
         Platform.isFxApplicationThread();
     }
-    
+
     protected Factory resolveFactory(Object name, Map attributes, Object value) {
         // First, see if parent factory has a factory,
         // if not, go to the builder.
@@ -192,7 +193,7 @@ class SceneGraphBuilder extends FactoryBuilderSupport {
         }else {
             factory =  super.resolveFactory(name, attributes, value);
         }
-        
+
         return factory
     }
 
@@ -207,7 +208,7 @@ class SceneGraphBuilder extends FactoryBuilderSupport {
                 def listener = new ChangeListener<Worker.State>() {
                     @Override
                     public void changed(ObservableValue<? extends Worker.State> observable,
-                                Worker.State oldState, Worker.State newState) {
+                                        Worker.State oldState, Worker.State newState) {
                         defer {
                             switch(newState) {
                                 case Worker.State.SUCCEEDED:
@@ -234,9 +235,9 @@ class SceneGraphBuilder extends FactoryBuilderSupport {
                 wv.engine.loadWorker.stateProperty().addListener(listener);
             }
         }
-        
+
         if(Platform.isFxApplicationThread()) {
-              submitClosure.call()
+            submitClosure.call()
         }else {
             defer submitClosure
         }
@@ -311,7 +312,7 @@ class SceneGraphBuilder extends FactoryBuilderSupport {
 
         throw new MissingPropertyException("Unrecognized property: ${name}", name, this.class);
     }
-    
+
     Color rgb(int r, int g, int b) {
         Color.rgb(r,g,b);
     }
@@ -335,16 +336,16 @@ class SceneGraphBuilder extends FactoryBuilderSupport {
     public void registerBeanFactory(String nodeName, String groupName, Class beanClass) {
         // poke at the type to see if we need special handling
         if(ContextMenu.isAssignableFrom(beanClass) ||
-             MenuBar.isAssignableFrom(beanClass) ||
-             MenuButton.isAssignableFrom(beanClass) ||
-             SplitMenuButton.isAssignableFrom(beanClass)  ) {
+                MenuBar.isAssignableFrom(beanClass) ||
+                MenuButton.isAssignableFrom(beanClass) ||
+                SplitMenuButton.isAssignableFrom(beanClass)  ) {
             registerFactory nodeName, groupName, new MenuFactory(beanClass)
         }else if(MenuItem.isAssignableFrom(beanClass)) {
             registerFactory nodeName, groupName, new MenuItemFactory(beanClass)
         }else if(TreeItem.isAssignableFrom(beanClass)) {
             registerFactory nodeName, groupName, new TreeItemFactory(beanClass)
         }else if(TableView.isAssignableFrom(beanClass) ||
-            TableColumn.isAssignableFrom(beanClass) ){
+                TableColumn.isAssignableFrom(beanClass) ){
             registerFactory nodeName, groupName, new TableFactory(beanClass)
         }else if(Labeled.isAssignableFrom(beanClass)) {
             registerFactory nodeName, groupName, new LabeledFactory(beanClass)
@@ -365,9 +366,9 @@ class SceneGraphBuilder extends FactoryBuilderSupport {
         } else if(Parent.isAssignableFrom(beanClass)) {
             registerFactory nodeName, groupName, new ContainerFactory(beanClass)
         } else if(Window.isAssignableFrom(beanClass) ||
-            DirectoryChooser.isAssignableFrom(beanClass) ||
-            FileChooser.isAssignableFrom(beanClass)) {
-                registerFactory nodeName, groupName, new StageFactory(beanClass)
+                DirectoryChooser.isAssignableFrom(beanClass) ||
+                FileChooser.isAssignableFrom(beanClass)) {
+            registerFactory nodeName, groupName, new StageFactory(beanClass)
         } else if(XYChart.isAssignableFrom(beanClass)) {
             registerFactory nodeName, groupName, new XYChartFactory(beanClass)
         } else if(PieChart.isAssignableFrom(beanClass)) {
@@ -447,12 +448,12 @@ class SceneGraphBuilder extends FactoryBuilderSupport {
         registerFactory 'right', new BorderPanePositionFactory(BorderPanePosition)
         registerFactory 'center', new BorderPanePositionFactory(BorderPanePosition)
     }
-    
+
     void registerCanvas() {
         CanvasFactory cf = new CanvasFactory();
-        
+
         registerFactory "canvas", cf
-        
+
         cf.registerFactory "appendSVGPath", new CanvasOperationFactory(AppendSVGPathOperation)
         cf.registerFactory "applyEffect", new CanvasOperationFactory(ApplyEffectOperation)
         cf.registerFactory "arc", new CanvasOperationFactory(ArcOperation)
@@ -504,18 +505,18 @@ class SceneGraphBuilder extends FactoryBuilderSupport {
         cf.registerFactory "transform", new CanvasOperationFactory(TransformOperation)
         cf.registerFactory "translate", new CanvasOperationFactory(TranslateOperation)
         cf.registerFactory "operation", new CanvasClosureOperationFactory(ClosureOperation)
-        
+
         DrawFactory df = new DrawFactory();
-        
+
         registerFactory "draw", df
         df.childFactories = cf.childFactories
-        
+
     }
 
     void registerBinding() {
         BindFactory bf = new BindFactory();
         registerFactory "bind", bf;
-        
+
         registerFactory "onChange", new ChangeFactory(ChangeListener)
         registerFactory "onInvalidate", new ChangeFactory(InvalidationListener)
     }
@@ -732,20 +733,20 @@ class SceneGraphBuilder extends FactoryBuilderSupport {
 
         TimelineFactory tf =  new TimelineFactory(Timeline)
         registerFactory 'timeline', tf
-        
+
         KeyFrameFactory kf = new KeyFrameFactory(KeyFrameWrapper)
         tf.registerFactory "at", kf
-        
-        
+
+
         KeyValueFactory kvf = new KeyValueFactory(TargetHolder);
         kf.registerFactory "change",kvf
         kvf.registerFactory "to", new KeyValueSubFactory(Object)
         kvf.registerFactory "tween", new KeyValueSubFactory(Interpolator)
-        
+
         // applies to Timeline and KeyFrame
         registerFactory "onFinished", new ClosureHandlerFactory(GroovyEventHandler)
-        
-        
+
+
     }
 
     void registerMedia() {
@@ -767,11 +768,14 @@ class SceneGraphBuilder extends FactoryBuilderSupport {
         if(parent instanceof MediaView && node instanceof MediaPlayer) {
             parent.mediaPlayer = node;
         } else if(parent instanceof Stage && node instanceof Scene) {
+            if ( parent.getOwner() != null ) {
+                node.getStylesheets().addAll(parent.getOwner().getScene().getStylesheets())
+            }
             parent.scene = node
         } else if(node instanceof FXMLLoaderBuilder) {
             node = node.build();
         }
-     }
+    }
 
     private static idDelegate = { FactoryBuilderSupport builder, node, Map attributes ->
         if (attributes.id) builder.setVariable(attributes.id, node)
@@ -787,9 +791,14 @@ class SceneGraphBuilder extends FactoryBuilderSupport {
 
         //Color.NamedColors.NAMED_COLORS.put("groovyblue", Color.rgb(99, 152, 170))
 
-        Color.NamedColors.NAMED_COLORS.each { name, color ->
-            setVariable(name, color) // would love to remove this one
-            setVariable(name.toUpperCase(), color)
+        Field[] field = Color.class.getFields();
+        for (int i = 0; i < field.length; i++) {
+            Field f = field[i];
+            Object obj = f.get(null);
+            if(obj instanceof Color ){
+                setVariable(f.getName(), (Color) obj) // would love to remove this one
+                setVariable(f.getName().toUpperCase(), (Color) obj)
+            }
         }
 
         propertyMap.each { name, value ->

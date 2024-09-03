@@ -32,15 +32,14 @@ class TreeItemFactory extends AbstractFXBeanFactory {
     public static def treeItemEvents
     static {
         treeItemEvents = [
-                "onBranchCollapse": TreeItem.BRANCH_COLLAPSED_EVENT,
-                "onBranchExpand" : TreeItem.BRANCH_EXPANDED_EVENT,
-                "onChildrenModification" : TreeItem.CHILDREN_MODIFICATION_EVENT,
-                "onGraphicChanged" : TreeItem.GRAPHIC_CHANGED_EVENT,
-                "onTreeNotification" : TreeItem.TREE_NOTIFICATION_EVENT,
-                "onValueChanged" : TreeItem.VALUE_CHANGED_EVENT
+                "onBranchCollapse": TreeItem.branchExpandedEvent(),
+                "onBranchExpand" : TreeItem.branchExpandedEvent(),
+                "onChildrenModification" : TreeItem.childrenModificationEvent(),
+                "onGraphicChanged" : TreeItem.graphicChangedEvent(),
+                "onTreeNotification" : TreeItem.treeNotificationEvent(),
+                "onValueChanged" : TreeItem.valueChangedEvent()
         ]
-        String constName = "EXPANDED_ITEM_COUNT_CHANGE_EVENT"
-        treeItemEvents.onExpandedItemCountChange = TreeItem."$constName"
+        treeItemEvents.onExpandedItemCountChange = TreeItem.expandedItemCountChangeEvent()
     }
 
     public TreeItemFactory() {

@@ -1,5 +1,4 @@
-@GrabConfig(systemClassLoader=true)
-@Grab('mysql:mysql-connector-java:8.0.26')
+package demo
 
 
 import groovy.sql.Sql
@@ -10,8 +9,6 @@ import javafx.scene.chart.CategoryAxis
 import javafx.scene.chart.NumberAxis
 import javafx.scene.chart.XYChart
 import javafx.stage.Stage
-import static groovyx.javafx.GroovyFX.start
-
 
 class DbSchemaDemo2 extends Application {
     @Override

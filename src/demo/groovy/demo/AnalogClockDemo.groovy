@@ -86,21 +86,21 @@ start {
                 circle(radius: radius + 20) {
                 }
                 // clock face
-                circle(radius: radius + 10, stroke: BLACK) {
+                circle(radius: radius + 10, fill: WHITE, stroke: BLACK) {
                 }
                 // dots around the clock for the hours
                 nodes(hourDots)
                 // center
                 circle(radius: 5, fill: BLACK)
                 // hour hand
-                path(fill: BLACK) {
+                path(fill: YELLOW) {
                     rotate(angle: bind(time.hourAngle()))
                     moveTo(x: 4, y: -4)
                     arcTo(radiusX: -1, radiusY: -1, x: -4, y: -4)
                     lineTo(x: 0, y: -radius / 4 * 3)
                 }
                 // minute hand
-                path(fill: BLACK) {
+                path(fill: YELLOW) {
                     rotate(angle: bind(time.minuteAngle()))
                     moveTo(x: 4, y: -4)
                     arcTo(radiusX: -1, radiusY: -1, x: -4, y: -4)

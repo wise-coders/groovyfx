@@ -19,9 +19,15 @@ package groovyx.javafx;
 
 import groovy.lang.Closure;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.JFXPanel;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import org.codehaus.groovy.runtime.InvokerHelper;
+
+import java.awt.*;
 
 /**
  * General starter application that displays a stage.
@@ -50,19 +56,28 @@ public class GroovyFX extends Application {
      * @param buildMe The code that is to be built in the context of a SceneGraphBuilder for the primary
      *                stage and started
      */
-     public static void start(Closure buildMe) {
-         closure = buildMe;
-         Application.launch();
-     }
+    public static void start(Closure buildMe) {
+        closure = buildMe;
+        if ( Platform.isFxApplicationThread()){
+            try {
+                final Stage primaryStage = new Stage();
+                // FIND OUT WHERE THE SCENE IS CREATED
+                // primaryStage.sceneProperty().addListener((o,p,c)-> Thread.dumpStack());
 
-     public static void startStage( Closure buildMe ){
-         try {
-             Stage primaryStage = new Stage();
-             buildMe.setDelegate(new SceneGraphBuilder(primaryStage));
-             InvokerHelper.invokeClosure(buildMe, new Object[] { primaryStage });
-         } catch(RuntimeException re) {
-             re.printStackTrace();
-             throw re;
-         }
-     }
+                final ObservableList<Window> activeWindows = Window.getWindows();
+                System.out.println("Currently active " + activeWindows.size() + " windows.");
+                if ( !activeWindows.isEmpty()) {
+                    primaryStage.initOwner( activeWindows.get( activeWindows.size()-1 ));
+                }
+                buildMe.setDelegate(new SceneGraphBuilder(primaryStage));
+                InvokerHelper.invokeClosure(buildMe, new Object[] { primaryStage });
+            } catch(RuntimeException re) {
+                re.printStackTrace();
+                throw re;
+            }
+        } else {
+            Application.launch();
+        }
+    }
+
 }

@@ -129,7 +129,8 @@ sourceSets {
 
 task createJar(type: Jar) {
     archiveBaseName.set('groovyfx')
-    from sourceSets.main.output
+    from sourceSets.ast.output, sourceSets.main.output
+    exclude( "idesupport")
 }
 
 // ---------------- dynamic tasks to run demos ------------------
