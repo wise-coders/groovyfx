@@ -18,6 +18,7 @@
 package groovyx.javafx.factory
 
 import groovyx.javafx.event.GroovyEventHandler
+import javafx.application.Platform
 import javafx.event.EventHandler
 import javafx.stage.FileChooser
 import javafx.stage.Popup
@@ -79,6 +80,9 @@ class StageFactory extends AbstractFXBeanFactory {
         def centerOnScreen = attributes.remove("centerOnScreen");
         builder.context.put("centerOnScreen", centerOnScreen);
 
+        def showAndWait = attributes.remove("showAndWait");
+        builder.context.put("showAndWait", showAndWait);
+
         def show = attributes.remove("show");
         if(show == null)
             show = attributes.remove("visible");
@@ -123,7 +127,9 @@ class StageFactory extends AbstractFXBeanFactory {
             if(builder.context.centerOnScreen) {
                 node.centerOnScreen();
             }
-            if (builder.context.show) {
+            if (builder.context.showAndWait) {
+                node.showAndWait();
+            } else if (builder.context.show) {
                 node.show();
             }
         }

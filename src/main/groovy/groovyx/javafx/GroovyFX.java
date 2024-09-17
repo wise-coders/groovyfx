@@ -60,15 +60,15 @@ public class GroovyFX extends Application {
         closure = buildMe;
         if ( Platform.isFxApplicationThread()){
             try {
-                final Stage primaryStage = new Stage();
                 // FIND OUT WHERE THE SCENE IS CREATED
                 // primaryStage.sceneProperty().addListener((o,p,c)-> Thread.dumpStack());
 
+                final Stage primaryStage = new Stage();
                 final ObservableList<Window> activeWindows = Window.getWindows();
-                System.out.println("Currently active " + activeWindows.size() + " windows.");
                 if ( !activeWindows.isEmpty()) {
                     primaryStage.initOwner( activeWindows.get( activeWindows.size()-1 ));
                 }
+
                 buildMe.setDelegate(new SceneGraphBuilder(primaryStage));
                 InvokerHelper.invokeClosure(buildMe, new Object[] { primaryStage });
             } catch(RuntimeException re) {
